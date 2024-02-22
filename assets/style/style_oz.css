@@ -1,0 +1,109 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  -moz-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  background-image: url(../images/bg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.logo {
+  background-image: url(../images/MDC_logo.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: block;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  /*border-radius: 25%;*/
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.link-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 98%;
+  margin-right: 0;
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.link-box:hover {
+  width: 100%;
+  padding: 20px;
+  background-color: #eee;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2);
+}
+
+.link-box img {
+  width: 25px;
+  height: 25px;
+  margin-left: 5px;
+}
+
+.link-box:after {
+  content: "";
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background-image: url(../images/link.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: 5px;
+}
+
+h3 {
+  font-size: 18px;
+  font-weight: normal;
+  text-align: center;
+}
+
+@media screen and (max-width: 768px) {
+  .links {
+    flex-direction: column;
+  }
+
+  .link-box {
+    width: 100%;
+    margin-right: 0;
+  }
+}
