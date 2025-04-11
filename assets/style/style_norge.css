@@ -28,9 +28,10 @@ body {
   /*background-color: #f1f1f1;*/
   background-color: #ccc;
   border: none;
-  padding: 20px 40px;
+  /*padding: 20px 40px;*/
+  padding: 10px 20px;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 14px;
   margin: 0 5px;
   transition: background-color 0.3s ease;
   border-top-left-radius: 10px;
