@@ -1,27 +1,25 @@
-<link rel="stylesheet" href="/assets/style/col-copy.css?v=5">
+<link rel="stylesheet" href="/assets/style/col-copy.css?v=6">
 
 <section>
     <h2>Example Data (Apr 2023 → Jul 2025)</h2>
 
-    <!-- Selector + copy tools -->
-    <div class="table-tools">
-        <div role="group" class="nhs-segment" aria-label="Select hospital dataset">
-            <button class="seg-btn is-active" data-ds="Hospital 1" type="button">Hospital 1</button>
-            <button class="seg-btn" data-ds="Hospital 2" type="button">Hospital 2</button>
-            <button class="seg-btn" data-ds="Hospital 3" type="button">Hospital 3</button>
-            <button class="seg-btn" data-ds="Hospital 4" type="button">Hospital 4</button>
-        </div>
+    <!-- Hospital selector (big buttons, one row) -->
+    <div class="nhs-segment" role="group" aria-label="Select hospital dataset">
+        <button class="seg-btn is-active" data-ds="Hospital 1" type="button">Hospital 1</button>
+        <button class="seg-btn" data-ds="Hospital 2" type="button">Hospital 2</button>
+        <button class="seg-btn" data-ds="Hospital 3" type="button">Hospital 3</button>
+        <button class="seg-btn" data-ds="Hospital 4" type="button">Hospital 4</button>
+    </div>
 
-        <div class="copy-buttons">
-            <button class="copy-col-btn" data-col-key="Int" type="button">Copy Int</button>
-            <button class="copy-col-btn" data-col-key="Percent" type="button">Copy Percent</button>
-            <button class="copy-col-btn" data-col-key="Rate" type="button">Copy Rate</button>
-        </div>
-
+    <!-- Copy buttons (smaller, on their own row with a gap) -->
+    <div class="copy-buttons">
+        <button class="copy-col-btn" data-col-key="Int" type="button">Copy Int</button>
+        <button class="copy-col-btn" data-col-key="Percent" type="button">Copy Percent</button>
+        <button class="copy-col-btn" data-col-key="Rate" type="button">Copy Rate</button>
         <span id="copy-status" aria-live="polite" class="status"></span>
     </div>
 
-    <!-- Data table -->
+    <!-- Data table (left-aligned, no Notes column) -->
     <table id="data" class="copy-friendly" border="1" cellpadding="6" cellspacing="0">
         <thead>
             <tr>
@@ -29,11 +27,10 @@
                 <th>Int</th>
                 <th>Percent</th>
                 <th>Rate</th>
-                <th>Notes</th>
             </tr>
         </thead>
         <tbody><!-- populated by JS --></tbody>
     </table>
 </section>
 
-<script defer src="/assets/js/col-copy.js?v=5"></script>
+<script defer src="/assets/js/col-copy.js?v=6"></script>
