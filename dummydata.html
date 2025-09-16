@@ -1,10 +1,17 @@
-<link rel="stylesheet" href="/assets/style/col-copy.css?v=9" />
+<link rel="stylesheet" href="/assets/style/col-copy.css?v=10" />
 
 <section>
-    <h2>Example Data (Apr 2023 → Jul 2025)</h2>
+    <!-- Title + Download on one line -->
+    <div class="heading-bar">
+        <h2>Example Data (Apr 2023 → Jul 2025)</h2>
+        <a class="nhs-btn link-btn heading-download" href="https://future.nhs.uk/MDC/view?objectId=115464677"
+            target="_blank" rel="noopener">
+            Download Excel Tool Here…
+        </a>
+    </div>
 
-    <!-- Top bar: hospital buttons (left) + right-aligned download + instructions -->
-    <div class="top-bar" aria-label="Dataset and downloads">
+    <!-- Hospital buttons (bigger) + Instructions on same line -->
+    <div class="ds-bar" aria-label="Dataset controls">
         <div class="hospital-buttons" role="group" aria-label="Select hospital dataset">
             <button class="nhs-btn ds-btn is-active" data-ds="Hospital 1" type="button">Hospital 1</button>
             <button class="nhs-btn ds-btn" data-ds="Hospital 2" type="button">Hospital 2</button>
@@ -12,20 +19,13 @@
             <button class="nhs-btn ds-btn" data-ds="Hospital 4" type="button">Hospital 4</button>
         </div>
 
-        <div class="right-buttons">
-            <a class="nhs-btn link-btn" href="https://future.nhs.uk/MDC/view?objectId=115464677" target="_blank"
-                rel="noopener">
-                Download Excel Tool Here…
-            </a>
-            <button id="open-instr" class="nhs-btn link-btn" type="button">
-                Click here for exercise instructions…
-            </button>
-        </div>
+        <button id="open-instr" class="nhs-btn link-btn instr-btn" type="button">
+            Click here for exercise instructions…
+        </button>
     </div>
 
     <table id="data" class="copy-friendly" border="1" cellpadding="6" cellspacing="0">
         <thead>
-            <!-- Copy controls row (part of the table) -->
             <tr class="tool-row">
                 <th id="dataset-title" scope="col">Hospital 1 Dummy Data</th>
                 <th scope="col"><button class="thead-copy-btn" data-col-key="Int" type="button">Copy Data</button></th>
@@ -33,7 +33,6 @@
                 </th>
                 <th scope="col"><button class="thead-copy-btn" data-col-key="Rate" type="button">Copy Data</button></th>
             </tr>
-            <!-- Actual column headings -->
             <tr>
                 <th>Date</th>
                 <th>ED All Types Attends</th>
@@ -60,17 +59,14 @@
             <button id="close-instr" class="modal-close" type="button" aria-label="Close">×</button>
         </div>
         <div class="modal-body">
-            <p><strong>Placeholder instructions:</strong> This modal will contain the activity steps for your session.
-                Add your brief, the objectives, and the expected outputs. Consider linking to reference materials or
-                your Excel tool.</p>
+            <p><strong>Placeholder instructions:</strong> add your exercise steps here.</p>
             <ul>
-                <li>Step 1 — load your dataset and pick a hospital.</li>
-                <li>Step 2 — copy the relevant column(s) using the buttons above.</li>
-                <li>Step 3 — paste into the Excel tool and follow the prompts.</li>
+                <li>Pick a hospital dataset.</li>
+                <li>Copy the needed column(s).</li>
+                <li>Paste into the Excel tool.</li>
             </ul>
-            <p>You can edit this text directly in the HTML or load it dynamically later.</p>
         </div>
     </div>
 </div>
 
-<script defer src="/assets/js/col-copy.js?v=9"></script>
+<script defer src="/assets/js/col-copy.js?v=10"></script>

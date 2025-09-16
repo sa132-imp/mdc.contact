@@ -1,9 +1,7 @@
-/* ===========================
-   Generic NHS-ish styling
-   =========================== */
+/* Base + section + heading retained from v9 */
 html,
 body {
-    background: #ffffff;
+    background: #fff;
     color: #0b0c0c;
     font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
     line-height: 1.5;
@@ -16,44 +14,43 @@ section {
     padding: 0 1rem;
 }
 
-/* Heading */
 h2 {
     margin: 0 0 1rem 0;
     padding-left: 0.75rem;
     border-left: 6px solid #005EB8;
-    /* NHS Blue */
     color: #003087;
-    /* NHS Dark Blue */
     font-weight: 700;
 }
 
-/* Top bar */
-.top-bar {
+/* NEW: title & download on one line */
+.heading-bar {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
-    /* right side hugs table edge */
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.heading-download {
+    white-space: nowrap;
+}
+
+/* NEW: dataset bar (hospitals + instructions on the same line) */
+.ds-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     gap: 0.75rem;
     margin: 0 0 0.9rem 0;
 }
 
 .hospital-buttons {
     display: flex;
-    gap: 0.6rem;
-    /* consistent spacing */
+    gap: 0.7rem;
     flex-wrap: wrap;
 }
 
-/* Right side stacked buttons */
-.right-buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 0.45rem;
-    /* small gap between the two */
-}
-
-/* NHS buttons (base) */
+/* NHS buttons */
 .nhs-btn {
     appearance: none;
     border-radius: 6px;
@@ -63,13 +60,13 @@ h2 {
     display: inline-block;
 }
 
-/* Hospital selector buttons */
+/* Bigger hospital buttons */
 .nhs-btn.ds-btn {
     border: 2px solid #005EB8;
     background: #005EB8;
-    color: #ffffff;
-    padding: 0.6rem 1rem;
-    font-size: 1rem;
+    color: #fff;
+    padding: 0.75rem 1.2rem;
+    font-size: 1.1rem;
 }
 
 .nhs-btn.ds-btn:hover {
@@ -77,12 +74,10 @@ h2 {
     border-color: #003087;
 }
 
-/* Active = whole button turns NHS Green */
 .nhs-btn.ds-btn.is-active {
     background: #007f3b;
-    /* NHS Green */
     border-color: #007f3b;
-    color: #ffffff;
+    color: #fff;
 }
 
 .nhs-btn.ds-btn:focus-visible {
@@ -90,10 +85,10 @@ h2 {
     outline-offset: 2px;
 }
 
-/* Right-aligned link-style buttons (download + instructions) */
+/* Link-style buttons (download & instructions) */
 .nhs-btn.link-btn {
     border: 2px solid #005EB8;
-    background: #ffffff;
+    background: #fff;
     color: #003087;
     padding: 0.6rem 1rem;
     font-size: 1rem;
@@ -115,24 +110,20 @@ table.copy-friendly {
     border: 1px solid #d8dde0;
     font-variant-numeric: tabular-nums;
     table-layout: fixed;
-    /* even column widths */
 }
 
 table.copy-friendly th,
 table.copy-friendly td {
     width: 25%;
-    /* 4 even columns */
     text-align: left;
-    /* left-align all cells */
     vertical-align: middle;
     word-wrap: break-word;
     overflow-wrap: anywhere;
 }
 
-/* Copy controls row inside thead */
+/* Copy controls row */
 table.copy-friendly thead tr.tool-row th {
     background: #e8f0fb;
-    /* light NHS-ish blue */
     color: #003087;
     font-weight: 700;
     padding: 0.5rem 0.6rem;
@@ -146,7 +137,7 @@ table.copy-friendly thead tr.tool-row th {
 /* Column headings row */
 table.copy-friendly thead tr:nth-child(2) th {
     background: #005EB8;
-    color: #ffffff;
+    color: #fff;
     text-align: left;
     padding: 0.6rem 0.75rem;
     font-weight: 700;
@@ -161,23 +152,22 @@ table.copy-friendly tbody td {
 
 table.copy-friendly tbody tr:nth-child(even) td {
     background: #f2f7fb;
-    /* zebra */
 }
 
-/* Buttons inside header cells */
+/* Header copy buttons */
 .thead-copy-btn {
     width: 100%;
     display: inline-block;
     appearance: none;
     border: 2px solid #005EB8;
     background: #005EB8;
-    color: #ffffff;
+    color: #fff;
     padding: 0.4rem 0.6rem;
     border-radius: 4px;
     font-weight: 700;
     font-size: 0.95rem;
     cursor: pointer;
-    transition: box-shadow 120ms ease, background 120ms ease, border-color 120ms ease;
+    transition: box-shadow 120ms, background 120ms, border-color 120ms;
 }
 
 .thead-copy-btn:hover {
@@ -190,10 +180,8 @@ table.copy-friendly tbody tr:nth-child(even) td {
     outline-offset: 2px;
 }
 
-/* Visual feedback after copy */
 .thead-copy-btn.was-copied {
     box-shadow: inset 0 0 0 3px #FFB81C;
-    /* inner yellow ring */
 }
 
 /* Status + disclaimer */
@@ -210,7 +198,7 @@ table.copy-friendly tbody tr:nth-child(even) td {
     font-style: italic;
 }
 
-/* Modal */
+/* Modal (unchanged) */
 .nhs-modal[hidden] {
     display: none;
 }
@@ -227,7 +215,7 @@ table.copy-friendly tbody tr:nth-child(even) td {
     margin: auto;
     max-width: 720px;
     width: calc(100% - 2rem);
-    background: #ffffff;
+    background: #fff;
     border: 2px solid #005EB8;
     border-radius: 10px;
     box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
@@ -239,7 +227,7 @@ table.copy-friendly tbody tr:nth-child(even) td {
 
 .modal-header {
     background: #005EB8;
-    color: #ffffff;
+    color: #fff;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -253,9 +241,9 @@ table.copy-friendly tbody tr:nth-child(even) td {
 
 .modal-close {
     appearance: none;
-    border: 2px solid #ffffff;
+    border: 2px solid #fff;
     background: transparent;
-    color: #ffffff;
+    color: #fff;
     font-size: 1.25rem;
     line-height: 1;
     border-radius: 6px;
@@ -273,22 +261,26 @@ table.copy-friendly tbody tr:nth-child(even) td {
     outline-offset: 2px;
 }
 
-@media (max-width: 640px) {
-    section {
-        padding: 0 0.75rem;
+@media (max-width: 760px) {
+    .heading-bar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
     }
 
-    .top-bar {
+    .heading-download {
+        align-self: stretch;
+        text-align: center;
+    }
+
+    .ds-bar {
         flex-direction: column;
         align-items: stretch;
         gap: 0.6rem;
     }
 
-    .right-buttons {
-        align-items: stretch;
-    }
-
-    .nhs-btn.link-btn {
+    .instr-btn {
+        align-self: stretch;
         text-align: center;
     }
 }
