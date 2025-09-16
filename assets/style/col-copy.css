@@ -124,6 +124,13 @@ table.copy-friendly th:nth-child(2) {
     }
 }
 
+/* Disable drag-select on the table; rely on buttons for copying */
+table.copy-friendly {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
 /* -----------------------------------------
    OPTIONAL: Only-Value column selectable
    (uncomment if you want to block selection
