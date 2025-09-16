@@ -8,9 +8,15 @@
     const theadCopyBtns = document.querySelectorAll('.thead-copy-btn');
     const dsTitleCell = document.getElementById('dataset-title');
 
+    // Modal bits
+    const modal = document.getElementById('instr-modal');
+    const openInstrBtn = document.getElementById('open-instr');
+    const closeInstrBtn = document.getElementById('close-instr');
+
     let DATASETS = null;
     let currentDatasetName = 'Hospital 1';
     let currentRows = [];
+    let lastFocusedEl = null;
 
     function renderRows(rows) {
         const html = rows.map(r => {
@@ -30,7 +36,6 @@
         currentRows = DATASETS[name] || [];
         renderRows(currentRows);
 
-        // Update active state and title cell
         dsButtons.forEach(b => b.classList.toggle('is-active', b.getAttribute('data-ds') === name));
         if (dsTitleCell) dsTitleCell.textContent = `${name} Dummy Data`;
     }
@@ -70,14 +75,13 @@
         });
     });
 
-    // Copy buttons in thead (single-column copy + visual feedback)
+    // Copy buttons in thead (single-column copy + visual feedback + message)
     theadCopyBtns.forEach(btn => {
         btn.addEventListener('click', async (e) => {
             e.preventDefault();
             e.stopPropagation();
             if (!DATASETS) return;
 
-            // Clear any selection to avoid copying the full table
             const sel = window.getSelection && window.getSelection();
             if (sel && sel.removeAllRanges) sel.removeAllRanges();
             if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
@@ -88,12 +92,9 @@
 
             try {
                 await copyPlain(payload);
-
-                // Visual "copied" ring on the pressed button
                 btn.classList.add('was-copied');
                 setTimeout(() => btn.classList.remove('was-copied'), 1200);
 
-                // Status message (comes back)
                 if (status) {
                     status.textContent = `Copied ${key} (${currentDatasetName}) — ${values.length} rows`;
                     setTimeout(() => (status.textContent = ''), 2500);
@@ -106,6 +107,36 @@
             }
         });
     });
+
+    // Modal: open/close helpers
+    function openModal() {
+        if (!modal) return;
+        lastFocusedEl = document.activeElement;
+        modal.removeAttribute('hidden');
+        // Focus the close button for accessibility
+        if (closeInstrBtn) closeInstrBtn.focus();
+    }
+    function closeModal() {
+        if (!modal) return;
+        modal.setAttribute('hidden', '');
+        if (lastFocusedEl && lastFocusedEl.focus) lastFocusedEl.focus();
+    }
+
+    // Modal events
+    if (openInstrBtn) openInstrBtn.addEventListener('click', openModal);
+    if (closeInstrBtn) closeInstrBtn.addEventListener('click', closeModal);
+    if (modal) {
+        modal.addEventListener('click', (e) => {
+            if (e.target && e.target.getAttribute('data-close') === 'true') {
+                closeModal();
+            }
+        });
+        document.addEventListener('keydown', (e) => {
+            if (!modal.hasAttribute('hidden') && e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    }
 
     // Load datasets.json (exact CSV -> JSON)
     fetch(DATA_URL, { cache: 'no-store' })

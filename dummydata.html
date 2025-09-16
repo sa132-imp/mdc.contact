@@ -1,9 +1,9 @@
-<link rel="stylesheet" href="/assets/style/col-copy.css?v=8" />
+<link rel="stylesheet" href="/assets/style/col-copy.css?v=9" />
 
 <section>
-    <h2>Dummy Data for SPC Charts (Apr 2023 → Jul 2025)</h2>
+    <h2>Example Data (Apr 2023 → Jul 2025)</h2>
 
-    <!-- Top bar: hospital buttons (left) + download button (right) -->
+    <!-- Top bar: hospital buttons (left) + right-aligned download + instructions -->
     <div class="top-bar" aria-label="Dataset and downloads">
         <div class="hospital-buttons" role="group" aria-label="Select hospital dataset">
             <button class="nhs-btn ds-btn is-active" data-ds="Hospital 1" type="button">Hospital 1</button>
@@ -12,10 +12,15 @@
             <button class="nhs-btn ds-btn" data-ds="Hospital 4" type="button">Hospital 4</button>
         </div>
 
-        <a class="nhs-btn link-btn" href="https://future.nhs.uk/MDC/view?objectId=115464677" target="_blank"
-            rel="noopener">
-            Download Excel Tool Here…
-        </a>
+        <div class="right-buttons">
+            <a class="nhs-btn link-btn" href="https://future.nhs.uk/MDC/view?objectId=115464677" target="_blank"
+                rel="noopener">
+                Download Excel Tool Here…
+            </a>
+            <button id="open-instr" class="nhs-btn link-btn" type="button">
+                Click here for exercise instructions…
+            </button>
+        </div>
     </div>
 
     <table id="data" class="copy-friendly" border="1" cellpadding="6" cellspacing="0">
@@ -40,6 +45,32 @@
     </table>
 
     <p id="copy-status" aria-live="polite" class="status"></p>
+    <p class="disclaimer">
+        N.b. this is all made up dummy data to follow certain SPC patterns for teaching, it is not related to real NHS
+        Trust data
+    </p>
 </section>
 
-<script defer src="/assets/js/col-copy.js?v=8"></script>
+<!-- Modal -->
+<div id="instr-modal" class="nhs-modal" role="dialog" aria-modal="true" aria-labelledby="instr-title" hidden>
+    <div class="modal-backdrop" data-close="true"></div>
+    <div class="modal-dialog" role="document">
+        <div class="modal-header">
+            <h3 id="instr-title">Exercise instructions</h3>
+            <button id="close-instr" class="modal-close" type="button" aria-label="Close">×</button>
+        </div>
+        <div class="modal-body">
+            <p><strong>Placeholder instructions:</strong> This modal will contain the activity steps for your session.
+                Add your brief, the objectives, and the expected outputs. Consider linking to reference materials or
+                your Excel tool.</p>
+            <ul>
+                <li>Step 1 — load your dataset and pick a hospital.</li>
+                <li>Step 2 — copy the relevant column(s) using the buttons above.</li>
+                <li>Step 3 — paste into the Excel tool and follow the prompts.</li>
+            </ul>
+            <p>You can edit this text directly in the HTML or load it dynamically later.</p>
+        </div>
+    </div>
+</div>
+
+<script defer src="/assets/js/col-copy.js?v=9"></script>
