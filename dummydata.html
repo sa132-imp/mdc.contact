@@ -1,223 +1,39 @@
+<link rel="stylesheet" href="/assets/style/css/col-copy.css?v=5">
+
 <section>
     <h2>Example Data (Apr 2023 → Jul 2025)</h2>
 
+    <!-- Selector + copy tools -->
     <div class="table-tools">
-        <button class="copy-col-btn" data-col="2" type="button">Copy “Value” column</button>
-        <button class="copy-col-btn" data-col="3" type="button">Copy “Ratio” column</button>
-        <button class="copy-col-btn" data-col="4" type="button">Copy “Count” column</button>
+        <div role="group" class="nhs-segment" aria-label="Select hospital dataset">
+            <button class="seg-btn is-active" data-ds="Hospital 1" type="button">Hospital 1</button>
+            <button class="seg-btn" data-ds="Hospital 2" type="button">Hospital 2</button>
+            <button class="seg-btn" data-ds="Hospital 3" type="button">Hospital 3</button>
+            <button class="seg-btn" data-ds="Hospital 4" type="button">Hospital 4</button>
+        </div>
+
+        <div class="copy-buttons">
+            <button class="copy-col-btn" data-col-key="Int" type="button">Copy Int</button>
+            <button class="copy-col-btn" data-col-key="Percent" type="button">Copy Percent</button>
+            <button class="copy-col-btn" data-col-key="Rate" type="button">Copy Rate</button>
+        </div>
+
         <span id="copy-status" aria-live="polite" class="status"></span>
     </div>
 
+    <!-- Data table -->
     <table id="data" class="copy-friendly" border="1" cellpadding="6" cellspacing="0">
         <thead>
             <tr>
                 <th>Date</th>
-                <th>Value</th>
-                <th>Ratio</th>
-                <th>Count</th>
+                <th>Int</th>
+                <th>Percent</th>
+                <th>Rate</th>
                 <th>Notes</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td>2023-04-01</td>
-                <td class="copy-col">110</td>
-                <td>0.633341</td>
-                <td>10062</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2023-05-01</td>
-                <td class="copy-col">178</td>
-                <td>0.647517</td>
-                <td>10915</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2023-06-01</td>
-                <td class="copy-col">133</td>
-                <td>0.640161</td>
-                <td>10801</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2023-07-01</td>
-                <td class="copy-col">205</td>
-                <td>0.629008</td>
-                <td>11137</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2023-08-01</td>
-                <td class="copy-col">121</td>
-                <td>0.621288</td>
-                <td>10518</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2023-09-01</td>
-                <td class="copy-col">196</td>
-                <td>0.660408</td>
-                <td>10788</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2023-10-01</td>
-                <td class="copy-col">144</td>
-                <td>0.669</td>
-                <td>11233</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2023-11-01</td>
-                <td class="copy-col">210</td>
-                <td>0.660493</td>
-                <td>10991</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2023-12-01</td>
-                <td class="copy-col">156</td>
-                <td>0.639055</td>
-                <td>11128</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2024-01-01</td>
-                <td class="copy-col">118</td>
-                <td>0.639602</td>
-                <td>11274</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2024-02-01</td>
-                <td class="copy-col">189</td>
-                <td>0.661081</td>
-                <td>12849</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2024-03-01</td>
-                <td class="copy-col">137</td>
-                <td>0.660722</td>
-                <td>14074</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2024-04-01</td>
-                <td class="copy-col">201</td>
-                <td>0.666315</td>
-                <td>13574</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2024-05-01</td>
-                <td class="copy-col">124</td>
-                <td>0.667479</td>
-                <td>14481</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2024-06-01</td>
-                <td class="copy-col">173</td>
-                <td>0.654739</td>
-                <td>13570</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2024-07-01</td>
-                <td class="copy-col">149</td>
-                <td>0.659012</td>
-                <td>13889</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2024-08-01</td>
-                <td class="copy-col">162</td>
-                <td>0.652296</td>
-                <td>13033</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2024-09-01</td>
-                <td class="copy-col">115</td>
-                <td>0.664051</td>
-                <td>13483</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2024-10-01</td>
-                <td class="copy-col">193</td>
-                <td>0.66247</td>
-                <td>14647</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2024-11-01</td>
-                <td class="copy-col">129</td>
-                <td>0.658746</td>
-                <td>14374</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2024-12-01</td>
-                <td class="copy-col">207</td>
-                <td>0.659763</td>
-                <td>14063</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2025-01-01</td>
-                <td class="copy-col">141</td>
-                <td>0.670445</td>
-                <td>13502</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2025-02-01</td>
-                <td class="copy-col">168</td>
-                <td>0.686395</td>
-                <td>12759</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2025-03-01</td>
-                <td class="copy-col">120</td>
-                <td>0.706587</td>
-                <td>14477</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2025-04-01</td>
-                <td class="copy-col">184</td>
-                <td>0.703825</td>
-                <td>13767</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2025-05-01</td>
-                <td class="copy-col">135</td>
-                <td>0.711966</td>
-                <td>14154</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2025-06-01</td>
-                <td class="copy-col">158</td>
-                <td>0.720881</td>
-                <td>13999</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2025-07-01</td>
-                <td class="copy-col">126</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </tbody>
+        <tbody><!-- populated by JS --></tbody>
     </table>
 </section>
 
-<!-- keep your existing paths -->
-<script defer src="assets/js/col-copy.js?v=4"></script>
+<script defer src="/assets/js/col-copy.js?v=5"></script>
