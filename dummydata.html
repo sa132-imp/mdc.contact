@@ -1,36 +1,43 @@
-<link rel="stylesheet" href="/assets/style/col-copy.css?v=6">
+<link rel="stylesheet" href="/assets/style/col-copy.css?v=7" />
 
 <section>
     <h2>Example Data (Apr 2023 → Jul 2025)</h2>
 
-    <!-- Hospital selector (big buttons, one row) -->
-    <div class="nhs-segment" role="group" aria-label="Select hospital dataset">
-        <button class="seg-btn is-active" data-ds="Hospital 1" type="button">Hospital 1</button>
-        <button class="seg-btn" data-ds="Hospital 2" type="button">Hospital 2</button>
-        <button class="seg-btn" data-ds="Hospital 3" type="button">Hospital 3</button>
-        <button class="seg-btn" data-ds="Hospital 4" type="button">Hospital 4</button>
+    <!-- Standalone hospital buttons -->
+    <div class="hospital-buttons" role="group" aria-label="Select hospital dataset">
+        <button class="nhs-btn ds-btn is-active" data-ds="Hospital 1" type="button">Hospital 1</button>
+        <button class="nhs-btn ds-btn" data-ds="Hospital 2" type="button">Hospital 2</button>
+        <button class="nhs-btn ds-btn" data-ds="Hospital 3" type="button">Hospital 3</button>
+        <button class="nhs-btn ds-btn" data-ds="Hospital 4" type="button">Hospital 4</button>
     </div>
 
-    <!-- Copy buttons (smaller, on their own row with a gap) -->
-    <div class="copy-buttons">
-        <button class="copy-col-btn" data-col-key="Int" type="button">Copy Int</button>
-        <button class="copy-col-btn" data-col-key="Percent" type="button">Copy Percent</button>
-        <button class="copy-col-btn" data-col-key="Rate" type="button">Copy Rate</button>
-        <span id="copy-status" aria-live="polite" class="status"></span>
-    </div>
-
-    <!-- Data table (left-aligned, no Notes column) -->
     <table id="data" class="copy-friendly" border="1" cellpadding="6" cellspacing="0">
         <thead>
+            <!-- Row of copy controls that feels part of the table -->
+            <tr class="tool-row">
+                <th id="dataset-title" scope="col">Hospital 1 Dummy Data</th>
+                <th scope="col">
+                    <button class="thead-copy-btn" data-col-key="Int" type="button">Copy Data</button>
+                </th>
+                <th scope="col">
+                    <button class="thead-copy-btn" data-col-key="Percent" type="button">Copy Data</button>
+                </th>
+                <th scope="col">
+                    <button class="thead-copy-btn" data-col-key="Rate" type="button">Copy Data</button>
+                </th>
+            </tr>
+            <!-- Actual column headings (renamed) -->
             <tr>
                 <th>Date</th>
-                <th>Int</th>
-                <th>Percent</th>
-                <th>Rate</th>
+                <th>ED All Types Attends</th>
+                <th>RTT 18wks Perf %</th>
+                <th>Falls per 1000 Bed Days</th>
             </tr>
         </thead>
         <tbody><!-- populated by JS --></tbody>
     </table>
+
+    <p id="copy-status" aria-live="polite" class="status"></p>
 </section>
 
-<script defer src="/assets/js/col-copy.js?v=6"></script>
+<script defer src="/assets/js/col-copy.js?v=7"></script>

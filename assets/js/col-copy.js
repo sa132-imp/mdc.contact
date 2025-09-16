@@ -1,18 +1,19 @@
 (function () {
-    const DATA_URL = '/assets/data/datasets.json'; // upload datasets.json here
+    const DATA_URL = '/assets/data/datasets.json'; // exact data generated from your CSV
 
     const table = document.getElementById('data');
     const tbody = table.querySelector('tbody');
     const status = document.getElementById('copy-status');
-    const segButtons = document.querySelectorAll('.seg-btn');
-    const copyButtons = document.querySelectorAll('.copy-col-btn');
+    const dsButtons = document.querySelectorAll('.ds-btn');
+    const theadCopyBtns = document.querySelectorAll('.thead-copy-btn');
+    const dsTitleCell = document.getElementById('dataset-title');
 
     let DATASETS = null;
     let currentDatasetName = 'Hospital 1';
     let currentRows = [];
 
     function renderRows(rows) {
-        // Render exactly as provided (no rounding). All values are strings.
+        // Render exactly as provided (strings), no rounding.
         const html = rows.map(r => {
             return `<tr>
         <td>${r.Date}</td>
@@ -25,17 +26,21 @@
     }
 
     function setActiveDataset(name) {
+        if (!DATASETS) return;
         currentDatasetName = name;
-        currentRows = (DATASETS && DATASETS[name]) ? DATASETS[name] : [];
+        currentRows = DATASETS[name] || [];
         renderRows(currentRows);
-        segButtons.forEach(b => b.classList.toggle('is-active', b.getAttribute('data-ds') === name));
+
+        // Update active state and title cell
+        dsButtons.forEach(b => b.classList.toggle('is-active', b.getAttribute('data-ds') === name));
+        if (dsTitleCell) dsTitleCell.textContent = `${name} Dummy Data`;
     }
 
     function getColumnValuesByKey(key) {
         const out = [];
         for (const r of currentRows) {
             const v = r[key];
-            if (v === null || v === undefined) continue;
+            if (v == null) continue;
             const s = String(v).trim();
             if (s !== '') out.push(s);
         }
@@ -58,30 +63,29 @@
         }
     }
 
-    // Hook: dataset selector
-    segButtons.forEach(btn => {
+    // Dataset buttons
+    dsButtons.forEach(btn => {
         btn.addEventListener('click', () => {
             const ds = btn.getAttribute('data-ds');
-            if (!DATASETS) return; // ignore clicks until data loads
             setActiveDataset(ds);
         });
     });
 
-    // Hook: copy buttons (copy a single column by key)
-    copyButtons.forEach(btn => {
+    // Copy buttons in thead
+    theadCopyBtns.forEach(btn => {
         btn.addEventListener('click', async (e) => {
             e.preventDefault();
             e.stopPropagation();
             if (!DATASETS) return;
 
-            // Clear any on-page selection to avoid copying the whole table
+            // Clear any selection to avoid copying the full table
             const sel = window.getSelection && window.getSelection();
             if (sel && sel.removeAllRanges) sel.removeAllRanges();
             if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
 
             const key = btn.getAttribute('data-col-key'); // "Int" | "Percent" | "Rate"
             const values = getColumnValuesByKey(key);
-            const payload = values.join('\n'); // one column, one value per line
+            const payload = values.join('\n');
 
             try {
                 await copyPlain(payload);
@@ -91,14 +95,14 @@
                 }
             } catch {
                 if (status) {
-                    status.textContent = 'Copy failed. Try selecting manually and Ctrl/Cmd+C.';
+                    status.textContent = 'Copy failed. Try Ctrl/Cmd+C as a fallback.';
                     setTimeout(() => (status.textContent = ''), 4000);
                 }
             }
         });
     });
 
-    // Load datasets (exactly as in your CSV)
+    // Load datasets.json (exact values from your CSV)
     fetch(DATA_URL, { cache: 'no-store' })
         .then(r => {
             if (!r.ok) throw new Error(`Failed to load ${DATA_URL}`);

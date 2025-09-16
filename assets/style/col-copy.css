@@ -27,98 +27,78 @@ h2 {
     font-weight: 700;
 }
 
-/* Big segmented selector (one row) */
-.nhs-segment {
+/* Standalone hospital buttons */
+.hospital-buttons {
     display: flex;
-    gap: 0;
-    /* solid control */
-    border: 2px solid #005EB8;
-    border-radius: 8px;
-    overflow: hidden;
-    flex-wrap: nowrap;
-    /* force single row */
-    margin-bottom: 0.8rem;
-    /* gap before copy buttons */
-}
-
-.seg-btn {
-    appearance: none;
-    background: #ffffff;
-    color: #003087;
-    border: 0;
-    padding: 0.7rem 1.1rem;
-    /* bigger */
-    font-weight: 700;
-    font-size: 1.05rem;
-    cursor: pointer;
-    border-right: 1px solid #005EB8;
-}
-
-.seg-btn:last-child {
-    border-right: 0;
-}
-
-.seg-btn:hover {
-    background: #f2f7fb;
-}
-
-.seg-btn.is-active {
-    background: #005EB8;
-    color: #ffffff;
-}
-
-.seg-btn:focus-visible {
-    outline: 3px solid #FFB81C;
-    outline-offset: 2px;
-}
-
-/* Copy buttons row (smaller, separate line with gap below) */
-.copy-buttons {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin: 0 0 0.8rem 0;
-    /* gap below this row */
+    gap: 0.6rem;
     flex-wrap: wrap;
+    margin: 0 0 0.9rem 0;
 }
 
-.copy-col-btn {
+.nhs-btn.ds-btn {
     appearance: none;
     border: 2px solid #005EB8;
     background: #005EB8;
     color: #ffffff;
-    padding: 0.45rem 0.7rem;
-    /* smaller than seg buttons */
-    border-radius: 4px;
-    font-weight: 600;
-    font-size: 0.95rem;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 1rem;
     cursor: pointer;
 }
 
-.copy-col-btn:hover {
+.nhs-btn.ds-btn:hover {
     background: #003087;
     border-color: #003087;
 }
 
-.copy-col-btn:focus-visible {
+.nhs-btn.ds-btn.is-active {
+    box-shadow: 0 0 0 2px #FFB81C inset;
+    /* subtle focus/active affordance */
+}
+
+.nhs-btn.ds-btn:focus-visible {
     outline: 3px solid #FFB81C;
     outline-offset: 2px;
 }
 
-.status {
-    font-size: 0.95rem;
-    color: #505a5f;
-}
-
-/* Table (left-aligned) */
+/* Table */
 table.copy-friendly {
     width: 100%;
     border-collapse: collapse;
     border: 1px solid #d8dde0;
     font-variant-numeric: tabular-nums;
+    table-layout: fixed;
+    /* even column widths */
 }
 
-table.copy-friendly thead th {
+table.copy-friendly th,
+table.copy-friendly td {
+    width: 25%;
+    /* 4 equal columns */
+    text-align: left;
+    /* left-align all cells */
+    vertical-align: middle;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;
+}
+
+/* Top tool row inside thead */
+table.copy-friendly thead tr.tool-row th {
+    background: #e8f0fb;
+    /* light NHS-ish blue */
+    color: #003087;
+    font-weight: 700;
+    padding: 0.5rem 0.6rem;
+    border-bottom: 1px solid #d8dde0;
+}
+
+#dataset-title {
+    font-style: italic;
+}
+
+/* Actual headings row */
+table.copy-friendly thead tr:nth-child(2) th {
     background: #005EB8;
     color: #ffffff;
     text-align: left;
@@ -127,11 +107,10 @@ table.copy-friendly thead th {
     border-bottom: 2px solid #003087;
 }
 
+/* Body rows */
 table.copy-friendly tbody td {
     padding: 0.55rem 0.75rem;
     border-top: 1px solid #e5e7ea;
-    text-align: left;
-    /* ensure left-aligned */
 }
 
 table.copy-friendly tbody tr:nth-child(even) td {
@@ -139,7 +118,39 @@ table.copy-friendly tbody tr:nth-child(even) td {
     /* zebra */
 }
 
-/* Optional: disable drag-select entirely; rely on copy buttons */
+/* Buttons inside header cells */
+.thead-copy-btn {
+    width: 100%;
+    display: inline-block;
+    appearance: none;
+    border: 2px solid #005EB8;
+    background: #005EB8;
+    color: #ffffff;
+    padding: 0.4rem 0.6rem;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+}
+
+.thead-copy-btn:hover {
+    background: #003087;
+    border-color: #003087;
+}
+
+.thead-copy-btn:focus-visible {
+    outline: 3px solid #FFB81C;
+    outline-offset: 2px;
+}
+
+/* Status text */
+.status {
+    margin-top: 0.5rem;
+    font-size: 0.95rem;
+    color: #505a5f;
+}
+
+/* Optional: rely only on header buttons for copying */
 /*
 table.copy-friendly {
   -webkit-user-select: none;
@@ -151,9 +162,5 @@ table.copy-friendly {
 @media (max-width: 640px) {
     section {
         padding: 0 0.75rem;
-    }
-
-    .copy-buttons {
-        width: 100%;
     }
 }
