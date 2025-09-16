@@ -1,5 +1,5 @@
 (function () {
-    const DATA_URL = '/assets/data/datasets.json'; // exact data generated from your CSV
+    const DATA_URL = '/assets/data/datasets.json'; // exact values from your CSV
 
     const table = document.getElementById('data');
     const tbody = table.querySelector('tbody');
@@ -13,7 +13,6 @@
     let currentRows = [];
 
     function renderRows(rows) {
-        // Render exactly as provided (strings), no rounding.
         const html = rows.map(r => {
             return `<tr>
         <td>${r.Date}</td>
@@ -71,7 +70,7 @@
         });
     });
 
-    // Copy buttons in thead
+    // Copy buttons in thead (single-column copy + visual feedback)
     theadCopyBtns.forEach(btn => {
         btn.addEventListener('click', async (e) => {
             e.preventDefault();
@@ -89,6 +88,12 @@
 
             try {
                 await copyPlain(payload);
+
+                // Visual "copied" ring on the pressed button
+                btn.classList.add('was-copied');
+                setTimeout(() => btn.classList.remove('was-copied'), 1200);
+
+                // Status message (comes back)
                 if (status) {
                     status.textContent = `Copied ${key} (${currentDatasetName}) — ${values.length} rows`;
                     setTimeout(() => (status.textContent = ''), 2500);
@@ -102,7 +107,7 @@
         });
     });
 
-    // Load datasets.json (exact values from your CSV)
+    // Load datasets.json (exact CSV -> JSON)
     fetch(DATA_URL, { cache: 'no-store' })
         .then(r => {
             if (!r.ok) throw new Error(`Failed to load ${DATA_URL}`);
