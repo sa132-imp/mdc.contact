@@ -1,45 +1,143 @@
-/* --- SMOKE TEST: make the whole page red so we know this CSS is loading --- */
+/* ===========================
+   Generic NHS-ish styling
+   =========================== */
+
+/* Base */
 html,
 body {
-    background: #c91414 !important;
-    /* bright red */
+    background: #ffffff;
+    color: #0b0c0c;
+    /* high-contrast body text */
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    /* NHS uses Frutiger; Arial is the web fallback */
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    margin: 0;
 }
 
-/* Keep the copy-only-on-Value behaviour */
-table.copy-friendly td:not(:nth-child(2)),
-table.copy-friendly th:not(:nth-child(2)) {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
+section {
+    max-width: 960px;
+    margin: 2rem auto;
+    padding: 0 1rem;
 }
 
-/* Optional: no highlight on blocked columns */
-table.copy-friendly td:not(:nth-child(2))::selection,
-table.copy-friendly th:not(:nth-child(2))::selection {
-    background: transparent;
+/* Heading */
+h2 {
+    margin: 0 0 1rem 0;
+    padding-left: 0.75rem;
+    border-left: 6px solid #005EB8;
+    /* NHS Blue */
+    color: #003087;
+    /* NHS Dark Blue */
+    font-weight: 700;
 }
 
-/* Small niceties */
+/* Tools row */
 .table-tools {
-    margin: 0.5rem 0 0.75rem;
     display: flex;
-    gap: 0.75rem;
     align-items: center;
+    gap: 0.75rem;
+    margin: 0.5rem 0 0.75rem;
 }
 
+/* Primary button (NHS Blue) */
 #copy-values {
-    padding: 0.4rem 0.8rem;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    background: #f7f7f7;
+    appearance: none;
+    border: 2px solid #005EB8;
+    background: #005EB8;
+    color: #ffffff;
+    padding: 0.5rem 0.9rem;
+    border-radius: 4px;
+    font-weight: 600;
     cursor: pointer;
 }
 
 #copy-values:hover {
-    background: #eee;
+    background: #003087;
+    /* darker NHS blue hover */
+    border-color: #003087;
 }
 
-.status {
-    font-size: 0.9em;
-    opacity: 0.75;
+#copy-values:focus-visible {
+    outline: 3px solid #FFB81C;
+    /* NHS Yellow focus ring */
+    outline-offset: 2px;
 }
+
+/* Status text */
+.status {
+    font-size: 0.95rem;
+    color: #505a5f;
+    /* neutral grey */
+}
+
+/* Table */
+table.copy-friendly {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #d8dde0;
+    /* light border */
+    font-variant-numeric: tabular-nums;
+    /* tidy numbers */
+}
+
+table.copy-friendly thead th {
+    background: #005EB8;
+    /* NHS Blue header */
+    color: #ffffff;
+    text-align: left;
+    padding: 0.6rem 0.75rem;
+    font-weight: 700;
+    border-bottom: 2px solid #003087;
+}
+
+table.copy-friendly tbody td {
+    padding: 0.55rem 0.75rem;
+    border-top: 1px solid #e5e7ea;
+}
+
+/* Zebra striping for readability */
+table.copy-friendly tbody tr:nth-child(even) td {
+    background: #f2f7fb;
+    /* very light blue */
+}
+
+/* Right-align numeric Value column (2nd col) */
+table.copy-friendly td:nth-child(2),
+table.copy-friendly th:nth-child(2) {
+    text-align: right;
+}
+
+/* Make the table usable on narrow screens */
+@media (max-width: 560px) {
+    section {
+        padding: 0 0.75rem;
+    }
+
+    #copy-values {
+        width: 100%;
+    }
+
+    .table-tools {
+        flex-wrap: wrap;
+    }
+}
+
+/* -----------------------------------------
+   OPTIONAL: Only-Value column selectable
+   (uncomment if you want to block selection
+   in all columns except the 2nd)
+------------------------------------------ */
+/*
+table.copy-friendly td:not(:nth-child(2)),
+table.copy-friendly th:not(:nth-child(2)) {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+table.copy-friendly td:not(:nth-child(2))::selection,
+table.copy-friendly th:not(:nth-child(2))::selection {
+  background: transparent;
+}
+*/
