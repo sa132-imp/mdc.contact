@@ -1,11 +1,11 @@
+/* --- SMOKE TEST: make the whole page red so we know this CSS is loading --- */
+html,
 body {
-     font-family: Arial, sans-serif;
-     margin: 1rem;
-     background: #ff0000;
-     color: #333;
+    background: #c91414 !important;
+    /* bright red */
 }
 
-/* Make only the Value column selectable; all others are non-selectable */
+/* Keep the copy-only-on-Value behaviour */
 table.copy-friendly td:not(:nth-child(2)),
 table.copy-friendly th:not(:nth-child(2)) {
     -webkit-user-select: none;
@@ -13,7 +13,7 @@ table.copy-friendly th:not(:nth-child(2)) {
     user-select: none;
 }
 
-/* Optional: don’t show selection highlight on blocked columns */
+/* Optional: no highlight on blocked columns */
 table.copy-friendly td:not(:nth-child(2))::selection,
 table.copy-friendly th:not(:nth-child(2))::selection {
     background: transparent;
