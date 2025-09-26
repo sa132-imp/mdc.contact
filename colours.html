@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Brand Colours</title>
+    <link rel="stylesheet" href="/assets/style/colours.css" />
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="brand">Your Brand</h1>
+            <nav aria-label="Page">
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="layout container">
+        <!-- Left: hero area -->
+        <section class="hero">
+            <img src="hero.jpg" alt="Your brand hero image" class="hero__img" />
+            <div class="hero__caption">
+                <h2>Modern Collection</h2>
+                <p>Our palette keeps things clean, warm, and readable.</p>
+                <a class="cta" href="#palette">View palette</a>
+            </div>
+        </section>
+
+        <!-- Right: palette sidebar -->
+        <aside class="palette" id="palette" aria-label="Brand colour palette">
+            <!-- Duplicate or remove <article> blocks to match your colours -->
+            <article class="swatch" style="--swatch:#6B7A8F;">
+                <div class="swatch__chip" aria-hidden="true"></div>
+                <div class="swatch__meta">
+                    <h3 class="swatch__name">Blueberry</h3>
+                    <code class="swatch__hex">#6B7A8F</code>
+                </div>
+            </article>
+
+            <article class="swatch" style="--swatch:#F7882F;">
+                <div class="swatch__chip" aria-hidden="true"></div>
+                <div class="swatch__meta">
+                    <h3 class="swatch__name">Apricot</h3>
+                    <code class="swatch__hex">#F7882F</code>
+                </div>
+            </article>
+
+            <article class="swatch" style="--swatch:#F7C331;">
+                <div class="swatch__chip" aria-hidden="true"></div>
+                <div class="swatch__meta">
+                    <h3 class="swatch__name">Citrus</h3>
+                    <code class="swatch__hex">#F7C331</code>
+                </div>
+            </article>
+
+            <article class="swatch" style="--swatch:#BDBDBD;">
+                <div class="swatch__chip" aria-hidden="true"></div>
+                <div class="swatch__meta">
+                    <h3 class="swatch__name">Stone</h3>
+                    <code class="swatch__hex">#BDBDBD</code>
+                </div>
+            </article>
+        </aside>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <small>© Your Brand</small>
+        </div>
+    </footer>
+</body>
+
+</html>
