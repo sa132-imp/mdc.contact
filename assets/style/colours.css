@@ -68,7 +68,7 @@ body {
 
 .logo {
     display: block;
-    height: var(--logo-h);
+    height: 64px;
     /* resize here */
     width: auto;
 }
