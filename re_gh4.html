@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Would you recalculate these charts?</title>
+    <style>
+        :root {
+            --nhs-blue: #005EB8;
+            --nhs-yellow: #FFB81C;
+            --text: #0b0c0c;
+            --radius: 10px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji", sans-serif;
+            color: var(--text);
+            background: #fff;
+        }
+
+        .wrap {
+            width: min(100%, 1200px);
+            /* wide canvas for large images */
+            margin: 0 auto;
+            padding: 24px 16px 48px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            margin: 0 0 8px 0;
+            font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+            font-weight: 800;
+            letter-spacing: 0.2px;
+        }
+
+        .stack {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 28px;
+            /* generous spacing between charts */
+        }
+
+        .chart-block {
+            background: #f7f7f7;
+            border: 1px solid #e5e5e5;
+            border-radius: var(--radius);
+            padding: 14px;
+        }
+
+    /* Increased title size */
+    .chart-title{
+      margin: 4px 6px 12px;
+      font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+      font-weight: 800;
+      color: var(--nhs-blue);
+    }
+
+        .chart-img {
+            display: block;
+            width: 100%;
+            height: auto;
+            /* show full image, no cropping */
+            border-radius: 8px;
+            background: #fafafa;
+        }
+
+        /* Keyboard focus helper if these ever become interactive */
+        .chart-block:focus-within {
+            outline: 3px solid var(--nhs-yellow);
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="wrap" role="main">
+        <header>
+            <h1>Active Membership Group</h1>
+        </br>
+            <h1>Would you recalculate these charts?</h1>
+        </header>
+
+        <section class="stack" aria-label="Charts">
+            <!-- Chart 1 -->
+            <article class="chart-block" aria-labelledby="chart1-title">
+                <h2 id="chart1-title" class="chart-title">Chart 1</h2>
+                <img src="assets/images/4_1.png" alt="Chart 1" loading="eager" class="chart-img" />
+            </article>
+
+            <!-- Chart 2 -->
+            <article class="chart-block" aria-labelledby="chart2-title">
+                <h2 id="chart2-title" class="chart-title">Chart 2</h2>
+                <img src="assets/images/4_2.png" alt="Chart 2" loading="lazy" class="chart-img" />
+            </article>
+
+            <!-- Chart 3 -->
+            <article class="chart-block" aria-labelledby="chart3-title">
+                <h2 id="chart3-title" class="chart-title">Chart 3</h2>
+                <img src="assets/images/4_3.png" alt="Chart 3" loading="lazy" class="chart-img" />
+            </article>
+        </section>
+    </main>
+</body>
+
+</html>
